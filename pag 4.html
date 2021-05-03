@@ -11,18 +11,48 @@
 
     <div id="answers">
         <h3>Nome:</h3>
+        <p id="name"></p>
 
         <h3>Qual seu animal de estimação favorito?</h3>
+        <p id="favoritePet"></p>
 
         <h3>Você tem animal de estimação?</h3>
+        <p id="hasPet"></p>
 
-        <h3>PERGUNTA PAGINA 2</h3>
+        <h3 id="quest1" style=display:none>Qual?</h3>
+        <h3 id="quest2" style=display:none>Por que não?</h3>
+        <p id="answer"></p>
+        
+        <h3>Quantos animais de estimação você tem ou gostaria de ter?</h3>
+        <p id="op"></p>
 
-        <h3>Quanto animais de estimação você gostaria de ter?
-        </h3>
-
+        <a target="_self" href="Pag 1.html">
+            <button id="restart">Reiniciar</button>
+        </a>
     </div>
-
 </body>
+<script>
+    load();
+    const button = document.getElementById("restart");
+
+    function load() {
+        document.getElementById("name").innerText = localStorage.getItem("userName");           //carrega o nome   
+        document.getElementById("favoritePet").innerText = localStorage.getItem("favoritePet"); //carrega o animal favorito
+        if (localStorage.getItem("hasPet") == "true") {                                         //checa a resposta de seleção pag2  
+            document.getElementById("hasPet").innerText = "sim";                                //carrega resposta 
+            document.getElementById("quest1").style.display = 'block';                          //carrega prox pergunta
+        } else {
+            document.getElementById("hasPet").innerText = "não";                                //carrega resposta 
+            document.getElementById("quest2").style.display = 'block';                          //carrega prox pergunta
+        }
+        document.getElementById("answer").innerText = localStorage.getItem("answer");           //carrega resposta da q2 pag2
+        document.getElementById("op").innerText = localStorage.getItem("op");                   //carrega da resposta pag3
+    }
+
+    button.onclick = function () {  //Reseta o LocalStorage
+        localStorage.clear();
+    }
+
+</script>
 
 </html>

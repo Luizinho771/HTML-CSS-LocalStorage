@@ -10,22 +10,41 @@
   <h1 id="title">Pesquisa sobre pets</h1>
 
   <div id="questions">
-    <form id="name">
+
+    <form id="quest">
       <label for="name">Nome:</label>
-      <input type="text" id="name" name="nome" required placeholder="Seu nome">
-    </form>
-
-    <form id="favoritePet">
+      <br>
+      <input type="text" id="userName" name="name" required>
+      <br>
       <label for="favoritePet">Qual seu animal de estimação favorito?</label>
-      <input type="text" id="fpet"  name="fpet" required>
-
+      <br>
+      <input type="text" id="favoritePet" name="favoritePet" required>
     </form>
-    <button id="next">
+
+    <button id="next" type="submit" form="quest" formaction="pag 2.html">
       Proximo
     </button>
-
   </div>
-
 </body>
+
+<script>
+
+  const nameValue = document.getElementById("userName");
+  const favoritePetValue = document.getElementById("favoritePet");
+  const button = document.getElementById("next");
+  load();
+
+  //função quando o botão Proximo for clicado salva o conteudo das cx de texto no LocalStorage
+  button.onclick = function () {
+    //key,value
+    localStorage.setItem("userName", nameValue.value);
+    localStorage.setItem("favoritePet", favoritePetValue.value);
+  }
+  //Carregar valores do localStorage
+  function load() {
+    document.getElementById("userName").value = localStorage.getItem("userName");
+    document.getElementById("favoritePet").value = localStorage.getItem("favoritePet");
+  }
+</script>
 
 </html>
